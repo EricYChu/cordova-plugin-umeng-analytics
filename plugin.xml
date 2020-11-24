@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plugin id="cordova-plugin-umeng-analytics"
+        version="1.0.0"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>UmengAnalytics</name>
+    <author>Eric Zhu</author>
+    <description>Cordova Bytedance UnionAD Plugin.</description>
+    <license>MIT</license>
+
+    <repo>https://github.com/EricYChu/cordova-plugin-umeng-analytics.git</repo>
+    <issue>https://github.com/EricYChu/cordova-plugin-umeng-analytics/issues</issue>
+
+    <engines>
+        <engine name="cordova" version=">=9.0.0"/>
+        <engine name="cordova-ios" version=">=6.0.0"/>
+        <engine name="cordova-android" version=">=9.0.0"/>
+    </engines>
+
+    <js-module name="UmengAnalytics" src="www/umeng-analytics.js">
+        <clobbers target="UmengAnalytics"/>
+    </js-module>
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="UmengAnalytics">
+                <param name="android-package" value="cordova.plugins.umenganalytics.CDVUmengAnalytics"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+        </config-file>
+
+        <source-file src="src/android/CDVUmengAnalytics.java" target-dir="src/cordova/plugins/umenganalytics"/>
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference"/>
+    </platform>
+
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="UmengAnalytics">
+                <param name="ios-package" value="CDVUmengAnalytics"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVUmengAnalytics.h"/>
+        <source-file src="src/ios/CDVUmengAnalytics.m"/>
+
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="UMCCommon" spec="~> 7.2.2"/>
+                <pod name="UMCCommonLog" spec="~> 2.0.0"/>
+            </pods>
+        </podspec>
+    </platform>
+</plugin>
