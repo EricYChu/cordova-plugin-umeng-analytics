@@ -114,7 +114,7 @@
 }
 
 - (void)getChannelId:(CDVInvokedUrlCommand*)command {
-    NSString* channelId = [[self.commandDelegate settings] objectForKey:@"ChannelId"];
+    NSString* channelId = [self.commandDelegate.settings objectForKey:[@"ChannelId" lowercaseString]];
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:channelId];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
