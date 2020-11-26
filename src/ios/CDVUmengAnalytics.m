@@ -22,8 +22,8 @@
 #endif
 
 - (void)pluginInitialize {
-    NSString* appKey = [[self.commandDelegate settings] objectForKey:@"CDVUmengAnalyticsAppKey"];
-    NSString* channelId = [[self.commandDelegate settings] objectForKey:@"ChannelId"];
+    NSString* appKey = [self.commandDelegate.settings objectForKey:[@"CDVUmengAnalyticsAppKey" lowercaseString]];
+    NSString* channelId = [self.commandDelegate.settings objectForKey:[@"ChannelId" lowercaseString]];
     [UMConfigure initWithAppkey: appKey channel: channelId];
 }
 
